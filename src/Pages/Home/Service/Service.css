@@ -1,0 +1,21 @@
+.service {
+  background-color: aliceblue;
+  width: 400px;
+  box-shadow: 2px 3px 8px rgb(169, 199, 228);
+  border-radius: 10px;
+  padding: 10px;
+}
+.service h1 {
+  font-size: 30px;
+  margin-top: 10px;
+}
+.service h1,
+p {
+  font-weight: 300;
+  color: #333;
+}
+.service img {
+  width: 80%;
+  border-radius: 80px 20px 80px 20px;
+  border: 5px solid rgb(64, 163, 230);
+}
