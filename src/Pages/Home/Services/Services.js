@@ -12,7 +12,7 @@ export default function Services() {
   }, []);
 
   return (
-    <div className="service-container">
+    <div id="Services" className="service-container">
       <h1 className="my-5 text-info text-center">Our Services</h1>
       <div className="services">
         {services.map(service => (
