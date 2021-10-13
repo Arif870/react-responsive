@@ -1,12 +1,18 @@
 import React from "react";
 import { Container, Nav, Navbar } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import useAuth from "../../../Hooks/useAuth";
 import logo from "../../../images/logo.png";
+import "./Topbar.css";
+import { HashLink } from "react-router-hash-link";
 
 export default function Topbar() {
+  const { users, logout, googleSignIn } = useAuth();
+
   return (
     <div>
       <Navbar
+        className="sticky-nav"
         sticky="top"
         collapseOnSelect
         expand="lg"
@@ -17,8 +23,12 @@ export default function Topbar() {
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="">
-              <Nav.Link href="#Services">Services</Nav.Link>
-              <Nav.Link href="#Experts">Experts</Nav.Link>
+              <Nav.Link as={HashLink} to="/home#Services">
+                Services
+              </Nav.Link>
+              <Nav.Link as={HashLink} to="/home#Experts">
+                Experts
+              </Nav.Link>
             </Nav>
 
             <Navbar.Brand className="text-center d-block mx-auto">
@@ -27,10 +37,19 @@ export default function Topbar() {
               </Link>
             </Navbar.Brand>
 
-            <Nav>
-              <Nav.Link eventKey={2} href="#memes">
-                Arif uz zaman
-              </Nav.Link>
+            <Nav className="profile d-flex align-items-center">
+              {users.displayName && <img src={users.photoURL} alt="" />}
+              {users.displayName && <Nav.Link>{users.displayName}</Nav.Link>}
+
+              {!users.email ? (
+                <Nav.Link as={Link} to="/login" onClick={googleSignIn}>
+                  Login
+                </Nav.Link>
+              ) : (
+                <Nav.Link as={Link} to="/login" onClick={logout}>
+                  Logout
+                </Nav.Link>
+              )}
             </Nav>
           </Navbar.Collapse>
         </Container>
